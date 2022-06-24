@@ -1,10 +1,11 @@
 package com.yunusbedir.pokem.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.yunusbedir.pokem.R
+import androidx.appcompat.app.AppCompatActivity
 import com.yunusbedir.pokem.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
