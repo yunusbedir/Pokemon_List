@@ -5,6 +5,10 @@ buildscript {
         lifecycle_version = "2.4.1"
         coroutines_core_version = '1.5.2'
         coroutines_android_version = '1.6.0'
+        retrofitVersion = '2.9.0'
+        moshiConverterVersion = '2.9.0'
+        retrofitInterceptorVersion = '4.8.1'
+        paging_version = "3.1.1"
     }
 }
 

@@ -64,4 +64,12 @@ dependencies {
     /** Coroutines **/
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_core_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
+
+    /** Retrofit **/
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshiConverterVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$retrofitInterceptorVersion"
+
+    /** Paging **/
+    implementation "androidx.paging:paging-runtime:$paging_version"
 }
