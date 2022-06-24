@@ -3,6 +3,8 @@ buildscript {
         nav_version = "2.4.2"
         hilt_version = "2.38.1"
         lifecycle_version = "2.4.1"
+        coroutines_core_version = '1.5.2'
+        coroutines_android_version = '1.6.0'
     }
 }
 
