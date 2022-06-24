@@ -20,6 +20,7 @@ class PokemonListFragment : BaseFragment<FragmentPokemonListBinding>(
 
     override fun setupUI() {
         initObservers()
+        pokemonListViewModel.fetchList()
     }
 
     private fun initObservers() {
@@ -27,8 +28,9 @@ class PokemonListFragment : BaseFragment<FragmentPokemonListBinding>(
             pokemonListViewModel.pokemonListState
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect {
-                    when(it){
+                    when (it) {
                         is UIState.ErrorMessage -> {
+                            binding.textView.text = it.errorMessage
                             sharedViewModel.setProgressVisibility(View.GONE)
                         }
                         is UIState.Loading -> {
@@ -36,6 +38,7 @@ class PokemonListFragment : BaseFragment<FragmentPokemonListBinding>(
 
                         }
                         is UIState.Success -> {
+                            binding.textView.text = it.data.toString()
                             sharedViewModel.setProgressVisibility(View.GONE)
                         }
                         null -> {

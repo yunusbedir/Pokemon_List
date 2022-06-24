@@ -9,6 +9,7 @@ buildscript {
         moshiConverterVersion = '2.9.0'
         retrofitInterceptorVersion = '4.8.1'
         paging_version = "3.1.1"
+        moshiVersion = '1.13.0'
     }
 }
 
