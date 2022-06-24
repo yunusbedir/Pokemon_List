@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pokemon List</string>
+    <string name="give_me_overlay_permission">Give me overlay permission!</string>
 </resources>

@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.yunusbedir.pokem.databinding.FragmentPermissionBinding
 import com.yunusbedir.pokem.ui.UIState
 import com.yunusbedir.pokem.ui.base.BaseFragment
-import com.yunusbedir.pokem.ui.pokemonlist.PokemonListViewModel
+import com.yunusbedir.pokem.util.requestPermissionOverlay
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -21,6 +21,10 @@ class PermissionFragment : BaseFragment<FragmentPermissionBinding>(
 
     override fun setupUI() {
         initObservers()
+        binding.overlayButton.setOnClickListener {
+            //Draw over other apps
+            requestPermissionOverlay()
+        }
     }
 
     private fun initObservers() {
@@ -28,7 +32,7 @@ class PermissionFragment : BaseFragment<FragmentPermissionBinding>(
             permissionViewModel.permissionState
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect {
-                    when(it){
+                    when (it) {
                         is UIState.ErrorMessage -> {
                             sharedViewModel.setProgressVisibility(View.GONE)
                         }
