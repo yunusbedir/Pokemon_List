@@ -12,6 +12,7 @@ data class FetchPokemonListResult(
     @JsonClass(generateAdapter = true)
     data class ItemResult(
         val name: String?,
-        val url: String?
+        val url: String?,
+        val id: Int?
     )
 }

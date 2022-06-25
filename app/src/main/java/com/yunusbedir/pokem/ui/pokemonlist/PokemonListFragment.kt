@@ -2,11 +2,14 @@ package com.yunusbedir.pokem.ui.pokemonlist
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.yunusbedir.pokem.databinding.FragmentPokemonListBinding
+import com.yunusbedir.pokem.domain.model.result.FetchPokemonListResult
 import com.yunusbedir.pokem.ui.adapter.load.PagingLoadStateAdapter
 import com.yunusbedir.pokem.ui.adapter.paging.PokemonListAdapter
 import com.yunusbedir.pokem.ui.base.BaseFragment
+import com.yunusbedir.pokem.util.RecyclerViewAdapterListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -14,7 +17,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class PokemonListFragment : BaseFragment<FragmentPokemonListBinding>(
     FragmentPokemonListBinding::inflate
-) {
+), RecyclerViewAdapterListener<FetchPokemonListResult.ItemResult> {
 
     private val pokemonListViewModel: PokemonListViewModel by viewModels()
 
@@ -22,13 +25,14 @@ class PokemonListFragment : BaseFragment<FragmentPokemonListBinding>(
     lateinit var pagingAdapter: PokemonListAdapter
 
     override fun setupUI() {
+        initListeners()
         setupAdapter()
         initObservers()
-        initListeners()
     }
 
     private fun initListeners() {
         binding.loadingStateInclude.retryButton.setOnClickListener { pagingAdapter.refresh() }
+        pagingAdapter.setRecyclerViewAdapterListener(this)
     }
 
     private fun setupAdapter() {
@@ -64,6 +68,16 @@ class PokemonListFragment : BaseFragment<FragmentPokemonListBinding>(
                     }
                 }
             }
+        }
+    }
+
+    override fun itemClickListener(item: FetchPokemonListResult.ItemResult) {
+        if (item.id != null) {
+            val action =
+                PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailFragment(item.id)
+            findNavController().navigate(action)
+        }else{
+            // show toast "can not found item id"
         }
     }
 }
