@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.yunusbedir.pokem.ui.SharedViewModel
 
@@ -35,6 +36,12 @@ abstract class BaseFragment<VB : ViewBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
+    }
+
+    fun launchOnLifecycleScope(execute: suspend () -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            execute()
+        }
     }
 
     override fun onDestroyView() {

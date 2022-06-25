@@ -6,8 +6,8 @@ import com.yunusbedir.pokem.domain.model.result.FetchPokemonListResult
 fun PokemonListResponse.toResultModel(): FetchPokemonListResult {
     return FetchPokemonListResult(
         count = count,
-        next = next,
-        previous = previous,
+        next = next?.split("&")?.get(0)?.split("=")?.get(1),
+        previous = previous?.split("&")?.get(0)?.split("=")?.get(1),
         results = results?.map {
             FetchPokemonListResult.ItemResult(
                 name = it.name,

@@ -1,23 +1,20 @@
 package com.yunusbedir.pokem.domain.usecase
 
-import com.yunusbedir.pokem.domain.ResultData
-import com.yunusbedir.pokem.domain.model.params.FetchPokemonListParams
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.yunusbedir.pokem.data.paging.datasource.PokemonListPagingSource
 import com.yunusbedir.pokem.domain.model.result.FetchPokemonListResult
 import com.yunusbedir.pokem.domain.reposiyory.PokemonRepository
-import com.yunusbedir.pokem.domain.toResultModel
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class FetchPokemonListUseCase @Inject constructor(
     private val pokemonRepository: PokemonRepository
 ) {
-    fun invoke(params: FetchPokemonListParams) = flow<ResultData> {
-        try {
-            val data = pokemonRepository.fetchPokemonList(params.offset)
-            val result = ResultData.Success<FetchPokemonListResult>(data.toResultModel())
-            emit(result)
-        } catch (e: Exception) {
-            emit(ResultData.Fail(e.message.toString()))
-        }
-    }
+
+    fun invoke(): Flow<PagingData<FetchPokemonListResult.ItemResult>> = Pager(
+        config = PagingConfig(pageSize = 20, prefetchDistance = 2),
+        pagingSourceFactory = { PokemonListPagingSource(pokemonRepository) }
+    ).flow
 }
