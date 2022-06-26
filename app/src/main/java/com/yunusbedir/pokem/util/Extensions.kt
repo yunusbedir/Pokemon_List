@@ -6,6 +6,8 @@ import android.os.Build
 import android.os.Parcelable
 import android.provider.Settings
 import androidx.core.content.ContextCompat
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.yunusbedir.pokem.firebase.FirebaseEvent
 import com.yunusbedir.pokem.service.ForegroundService
 
 
@@ -27,4 +29,8 @@ fun <T : Parcelable> Context.startService(pokemonDetail: T?) {
     } else {
         startService(intent)
     }
+}
+
+fun FirebaseEvent.trackEventFirebaseAnalytics(firebaseAnalytics: FirebaseAnalytics) {
+    firebaseAnalytics.logEvent(eventName, params)
 }
