@@ -5,6 +5,7 @@ import com.yunusbedir.pokem.databinding.ItemViewPokemonListBinding
 import com.yunusbedir.pokem.domain.model.result.FetchPokemonListResult.ItemResult
 import com.yunusbedir.pokem.ui.adapter.BasePagingAdapter
 import com.yunusbedir.pokem.util.GenericDiffUtil
+import com.yunusbedir.pokem.util.getBinding
 import javax.inject.Inject
 
 class PokemonListAdapter @Inject constructor(
@@ -14,7 +15,7 @@ class PokemonListAdapter @Inject constructor(
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonListViewHolder {
-        val binding = getBinding(parent, ItemViewPokemonListBinding::inflate)
+        val binding = parent.getBinding(ItemViewPokemonListBinding::inflate)
         return PokemonListViewHolder(binding)
     }
 

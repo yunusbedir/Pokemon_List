@@ -1,7 +1,5 @@
 package com.yunusbedir.pokem.ui.adapter
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -23,17 +21,6 @@ abstract class BasePagingAdapter<T : Any, VB : ViewBinding, VH : BasePagingAdapt
         holder.bind(getItem(position)) {
             adapterListener?.itemClickListener(it)
         }
-    }
-
-    fun getBinding(
-        parent: ViewGroup,
-        bindingInflater: (inflater: LayoutInflater, parent: ViewGroup, attachToParent: Boolean) -> VB
-    ): VB {
-        return bindingInflater(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
     }
 
     abstract class BaseViewHolder<T, VB : ViewBinding>(private val binding: VB) :
