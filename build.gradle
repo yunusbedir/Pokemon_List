@@ -11,6 +11,18 @@ buildscript {
         paging_version = "3.1.1"
         moshiVersion = '1.13.0'
         glide_version = '4.13.0'
+        firebase_bom_version = '30.1.0'
+        google_services_version = '4.3.12'
+        crashlytics_gradle_version = '2.9.1'
+        crashlytics_version = '18.2.11'
+        analytics_version = '21.0.0'
+    }
+    dependencies {
+        classpath "com.google.gms:google-services:$google_services_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlytics_gradle_version"
+
     }
 }
 
