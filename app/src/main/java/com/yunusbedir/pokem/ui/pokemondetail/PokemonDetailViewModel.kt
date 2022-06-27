@@ -25,18 +25,7 @@ class PokemonDetailViewModel @Inject constructor(
         _pokemonDetailState.value = UIState.Loading()
         viewModelScope.launch {
             getPokemonDetailUseCase.invoke(id).collect {
-                when (it) {
-                    is ResultData.Fail<*> -> {
-                        _pokemonDetailState.value = UIState.ErrorMessage(
-                            it.message.toString()
-                        )
-                    }
-                    is ResultData.Success<*> -> {
-                        _pokemonDetailState.value = UIState.Success(
-                            (it.data as PokemonDetailResult)
-                        )
-                    }
-                }
+                _pokemonDetailState.value = it
             }
         }
     }

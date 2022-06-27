@@ -1,6 +1,6 @@
 package com.yunusbedir.pokem.domain
 
-sealed class ResultData {
-    data class Success<DATA>(val data: DATA) : ResultData()
-    data class Fail<ERROR>(val message: ERROR) : ResultData()
+sealed class ResultData<T> {
+    data class Success<T>(val data: T) : ResultData<T>()
+    data class Fail<T>(val message: Error) : ResultData<T>()
 }

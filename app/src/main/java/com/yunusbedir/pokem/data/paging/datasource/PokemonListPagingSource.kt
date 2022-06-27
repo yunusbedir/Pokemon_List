@@ -3,6 +3,7 @@ package com.yunusbedir.pokem.data.paging.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.yunusbedir.pokem.domain.ResultData
 import com.yunusbedir.pokem.domain.model.result.FetchPokemonListResult
 import com.yunusbedir.pokem.domain.reposiyory.PokemonRepository
 import com.yunusbedir.pokem.domain.toResultModel
@@ -16,12 +17,18 @@ class PokemonListPagingSource @Inject constructor(
     ): LoadResult<Int, FetchPokemonListResult.ItemResult> {
         return try {
             val nextPageNumber = params.key ?: 0
-            val response = backend.fetchPokemonList(nextPageNumber).toResultModel()
-            LoadResult.Page(
-                data = response.results!!,
-                prevKey = response.previous?.toInt(), // Only paging forward.
-                nextKey = response.next?.toInt()
-            )
+            when (val response = backend.fetchPokemonList(nextPageNumber)) {
+                is ResultData.Fail -> {
+                    LoadResult.Error(Throwable(response.message.errorMessage))
+                }
+                is ResultData.Success -> {
+                    LoadResult.Page(
+                        data = response.data.results!!,
+                        prevKey = response.data.previous?.toInt(), // Only paging forward.
+                        nextKey = response.data.next?.toInt()
+                    )
+                }
+            }
         } catch (e: Exception) {
             LoadResult.Error(Throwable(e))
         }
