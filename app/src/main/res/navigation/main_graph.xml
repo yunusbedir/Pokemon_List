@@ -29,8 +29,7 @@
             app:destination="@id/pokemonDetailFragment" />
     </fragment>
     <action
-        android:id="@+id/action_global_pokemonListFragment"
-        app:destination="@id/pokemonListFragment"
-        app:launchSingleTop="true"
-        app:popUpTo="@id/main_graph" />
+        android:id="@+id/action_global_permissionFragment"
+        app:destination="@id/permissionFragment"
+        app:popUpTo="@id/pokemonListFragment" />
 </navigation>

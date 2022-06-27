@@ -17,6 +17,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.yunusbedir.pokem.R
 import com.yunusbedir.pokem.databinding.ActivityMainBinding
+import com.yunusbedir.pokem.ui.permission.PermissionFragment
+import com.yunusbedir.pokem.ui.permission.PermissionFragmentDirections
 import com.yunusbedir.pokem.ui.pokemonlist.PokemonListFragmentDirections
 import com.yunusbedir.pokem.util.checkPermissionOverlay
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,20 +46,14 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
-        val navGraph = navController.navInflater.inflate(R.navigation.main_graph)
-        navGraph.setStartDestination(
-            if (checkPermissionOverlay()) {
-                navGraph[R.id.pokemonListFragment].id
-            } else {
-                navGraph[R.id.permissionFragment].id
-            }
-        )
-        navController.graph = navGraph
         _binding?.navView?.setupWithNavController(navController)
         appBarConfiguration = AppBarConfiguration(navController.graph, _binding?.drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-
+        if (checkPermissionOverlay().not()) {
+            val action = PermissionFragmentDirections.actionGlobalPermissionFragment()
+            navController.navigate(action)
+        }
     }
 
     private fun initObservers() {
@@ -85,9 +81,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (checkPermissionOverlay())
             _binding?.navHostFragmentContainer?.let {
-                val action =
-                    PokemonListFragmentDirections.actionGlobalPokemonListFragment()
-                findNavController(it.id).navigate(action)
+                findNavController(it.id).navigateUp()
             }
     }
 
