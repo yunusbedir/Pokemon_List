@@ -7,4 +7,10 @@
     <string name="pokemon_name">Pokemon Name:</string>
     <string name="pokemon_height">Pokemon Height:</string>
     <string name="pokemon_weight">Pokemon Weight:</string>
+    <string name="open">opem</string>
+    <string name="close">close</string>
+    <string name="close_application">Close Application</string>
+    <string name="permission">Permission</string>
+    <string name="pokemon_detail">Pokemon Detail</string>
+    <string name="pokemon_list">Pokemon List</string>
 </resources>

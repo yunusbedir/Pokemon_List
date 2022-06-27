@@ -1,11 +1,13 @@
 package com.yunusbedir.pokem.ui.pokemonlist
 
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.yunusbedir.pokem.databinding.FragmentPokemonListBinding
 import com.yunusbedir.pokem.domain.model.result.FetchPokemonListResult
+import com.yunusbedir.pokem.ui.SharedViewModel
 import com.yunusbedir.pokem.ui.adapter.load.PagingLoadStateAdapter
 import com.yunusbedir.pokem.ui.adapter.paging.PokemonListAdapter
 import com.yunusbedir.pokem.ui.base.BaseFragment
@@ -25,6 +27,7 @@ class PokemonListFragment : BaseFragment<FragmentPokemonListBinding>(
     lateinit var pagingAdapter: PokemonListAdapter
 
     override fun setupUI() {
+        sharedViewModel.setToolbarVisibility(View.VISIBLE)
         initListeners()
         setupAdapter()
         initObservers()

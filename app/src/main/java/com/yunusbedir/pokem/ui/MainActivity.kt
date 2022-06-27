@@ -7,12 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.get
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.yunusbedir.pokem.R
 import com.yunusbedir.pokem.databinding.ActivityMainBinding
-import com.yunusbedir.pokem.ui.permission.PermissionFragmentDirections
+import com.yunusbedir.pokem.ui.pokemonlist.PokemonListFragmentDirections
 import com.yunusbedir.pokem.util.checkPermissionOverlay
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -21,9 +26,11 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private val sharedViewModel: SharedViewModel by viewModels()
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
+
 
     private var _binding: ActivityMainBinding? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,10 +40,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setNavigationGraph() {
+        setSupportActionBar(_binding!!.toolbar)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        val navController = navHostFragment.navController
-
+        navController = navHostFragment.navController
         val navGraph = navController.navInflater.inflate(R.navigation.main_graph)
         navGraph.setStartDestination(
             if (checkPermissionOverlay()) {
@@ -46,6 +53,11 @@ class MainActivity : AppCompatActivity() {
             }
         )
         navController.graph = navGraph
+        _binding?.navView?.setupWithNavController(navController)
+        appBarConfiguration = AppBarConfiguration(navController.graph, _binding?.drawerLayout)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+
     }
 
     private fun initObservers() {
@@ -58,6 +70,15 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
         }
+        lifecycleScope.launch {
+            sharedViewModel.toolbarVisibilityState
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect {
+                    if (it != null) {
+                        _binding?.toolbar?.visibility = it
+                    }
+                }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -65,9 +86,13 @@ class MainActivity : AppCompatActivity() {
         if (checkPermissionOverlay())
             _binding?.navHostFragmentContainer?.let {
                 val action =
-                    PermissionFragmentDirections.actionPermissionFragmentToPokemonListFragment()
+                    PokemonListFragmentDirections.actionGlobalPokemonListFragment()
                 findNavController(it.id).navigate(action)
             }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onDestroy() {

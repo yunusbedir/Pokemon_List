@@ -20,6 +20,7 @@ class PermissionFragment : BaseFragment<FragmentPermissionBinding>(
     private val permissionViewModel: PermissionViewModel by viewModels()
 
     override fun setupUI() {
+        sharedViewModel.setToolbarVisibility(View.GONE)
         initObservers()
         binding.overlayButton.setOnClickListener {
             //Draw over other apps
