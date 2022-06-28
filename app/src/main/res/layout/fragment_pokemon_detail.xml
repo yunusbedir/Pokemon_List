@@ -85,7 +85,7 @@
             android:id="@+id/show_in_overlay_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Show in Overlay"
+            android:text="@string/show_in_overlay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pokemon_weight_text_view" />

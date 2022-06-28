@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pokemonlar</string>
+    <string name="give_me_overlay_permission">Diğer uygulamaların üzerinde gösterilmesine izin ver</string>
+    <string name="retry">Tekrar dene</string>
+    <string name="no_internet_connection">İnternet bağlantısı bulunmamaktadır</string>
+    <string name="pokemon_name">Pokemon Adı:</string>
+    <string name="pokemon_height">Pokemon Yüksekliği:</string>
+    <string name="pokemon_weight">Pokemon Genişliği:</string>
+    <string name="open">Aç</string>
+    <string name="close">Kapat</string>
+    <string name="close_application">Uygulamayı Kapat</string>
+    <string name="permission">İzin</string>
+    <string name="pokemon_detail">Pokemon Detay</string>
+    <string name="pokemon_list">Pokemonlar</string>
+    <string name="close_window">Ekranı kapat</string>
+    <string name="show_in_overlay">Ekranda göster</string>
+</resources>
