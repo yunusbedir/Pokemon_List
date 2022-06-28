@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
+/** loadWithUrl extension **/
 fun ImageView.loadWithUrl(url: String) {
     Glide.with(this).load(url).into(this)
 }
 
+/** binding extension **/
 fun <VB> ViewGroup.getBinding(
     bindingInflater: (inflater: LayoutInflater, parent: ViewGroup, attachToParent: Boolean) -> VB
 ): VB {
@@ -19,6 +21,7 @@ fun <VB> ViewGroup.getBinding(
     )
 }
 
+/** binding extension **/
 fun <VB> LayoutInflater.getBinding(
     bindingInflater: (inflater: LayoutInflater) -> VB
 ): VB {

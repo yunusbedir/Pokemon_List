@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.item_close_application -> {
                     finishAndRemoveTask()
-                    true
                 }
             }
 
@@ -71,15 +70,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        lifecycleScope.launch {
-            sharedViewModel.loadingProgressState
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect {
-                    if (it != null) {
-                        _binding?.loadingProgressContainer?.visibility = it
-                    }
-                }
-        }
         lifecycleScope.launch {
             sharedViewModel.toolbarVisibilityState
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
