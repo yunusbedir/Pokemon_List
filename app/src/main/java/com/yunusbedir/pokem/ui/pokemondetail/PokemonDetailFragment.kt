@@ -1,5 +1,6 @@
 package com.yunusbedir.pokem.ui.pokemondetail
 
+import android.provider.Settings
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -37,8 +38,11 @@ class PokemonDetailFragment : BaseFragment<FragmentPokemonDetailBinding>(
 
     private fun initListeners() {
         binding.showInOverlayButton.setOnClickListener {
-            startService()
-            FirebaseEvent.SHOW_POKEMON_IN_OVERLAY.trackEventFirebaseAnalytics(firebaseAnalytics)
+
+            if (Settings.canDrawOverlays(requireContext())) {
+                startService()
+            }
+            firebaseAnalytics.trackEventFirebaseAnalytics(FirebaseEvent.SHOW_POKEMON_IN_OVERLAY)
         }
         binding.loadingStateInclude.retryButton.setOnClickListener {
             pokemonDetailViewModel.getPokemonDetail(args.pokemonId)

@@ -17,38 +17,12 @@ class PermissionFragment : BaseFragment<FragmentPermissionBinding>(
     FragmentPermissionBinding::inflate
 ) {
 
-    private val permissionViewModel: PermissionViewModel by viewModels()
-
     override fun setupUI() {
         sharedViewModel.setToolbarVisibility(View.GONE)
-        initObservers()
         binding.overlayButton.setOnClickListener {
             //Draw over other apps
             requestPermissionOverlay()
         }
     }
 
-    private fun initObservers() {
-        lifecycleScope.launch {
-            permissionViewModel.permissionState
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect {
-                    when (it) {
-                        is UIState.ErrorMessage -> {
-                            sharedViewModel.setProgressVisibility(View.GONE)
-                        }
-                        is UIState.Loading -> {
-                            sharedViewModel.setProgressVisibility(View.VISIBLE)
-
-                        }
-                        is UIState.Success -> {
-                            sharedViewModel.setProgressVisibility(View.GONE)
-                        }
-                        null -> {
-                            sharedViewModel.setProgressVisibility(View.GONE)
-                        }
-                    }
-                }
-        }
-    }
 }

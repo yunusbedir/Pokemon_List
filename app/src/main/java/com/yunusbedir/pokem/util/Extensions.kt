@@ -10,7 +10,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.yunusbedir.pokem.firebase.FirebaseEvent
 import com.yunusbedir.pokem.service.ForegroundService
 
-
+/** Start service for draw on overlay **/
 fun <T : Parcelable> Context.startService(pokemonDetail: T?) {
     val intent = Intent(this, ForegroundService::class.java).putExtra(
         ForegroundService.EXTRA_NAME,
@@ -31,6 +31,8 @@ fun <T : Parcelable> Context.startService(pokemonDetail: T?) {
     }
 }
 
-fun FirebaseEvent.trackEventFirebaseAnalytics(firebaseAnalytics: FirebaseAnalytics) {
-    firebaseAnalytics.logEvent(eventName, params)
+
+/** Event Send to firebase analytics **/
+fun FirebaseAnalytics.trackEventFirebaseAnalytics(firebaseEvent: FirebaseEvent) {
+    logEvent(firebaseEvent.eventName, firebaseEvent.params)
 }
