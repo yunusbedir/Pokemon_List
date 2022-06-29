@@ -11,11 +11,11 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.yunusbedir.pokem.databinding.FragmentPokemonDetailBinding
 import com.yunusbedir.pokem.domain.model.result.PokemonDetailResult
 import com.yunusbedir.pokem.firebase.FirebaseEvent
+import com.yunusbedir.pokem.firebase.trackEventFirebaseAnalytics
 import com.yunusbedir.pokem.ui.UIState
 import com.yunusbedir.pokem.ui.base.BaseFragment
 import com.yunusbedir.pokem.util.loadWithUrl
 import com.yunusbedir.pokem.util.startService
-import com.yunusbedir.pokem.util.trackEventFirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -13,10 +13,10 @@ class RemoteConfigUtils @Inject constructor(
     init {
         remoteConfig.fetchAndActivate().addOnCompleteListener {
             AppCompatDelegate.setDefaultNightMode(
-                if (getTheme() == DEFAULTS[THEME]) {
-                    AppCompatDelegate.MODE_NIGHT_NO
-                } else
+                if (getTheme() != DEFAULTS[IS_NIGHT_THEME]) {
                     AppCompatDelegate.MODE_NIGHT_YES
+                } else
+                    AppCompatDelegate.MODE_NIGHT_NO
             )
         }
     }
@@ -27,11 +27,9 @@ class RemoteConfigUtils @Inject constructor(
 
     companion object {
         private const val IS_NIGHT_THEME = "is_night_theme"
-        private const val THEME = "theme"
 
         val DEFAULTS = hashMapOf<String, Any>(
-            IS_NIGHT_THEME to false,
-            THEME to "default"
+            IS_NIGHT_THEME to false
         )
     }
 }

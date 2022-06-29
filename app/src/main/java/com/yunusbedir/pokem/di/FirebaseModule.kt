@@ -27,7 +27,7 @@ object FirebaseModule {
 
     @Singleton
     @Provides
-    fun provideFirebaseRemoteConfig(application: Application): FirebaseRemoteConfig {
+    fun provideFirebaseRemoteConfig(): FirebaseRemoteConfig {
         val remoteConfig = Firebase.remoteConfig
         val configSettings = remoteConfigSettings {
             minimumFetchIntervalInSeconds = if (BuildConfig.DEBUG) {

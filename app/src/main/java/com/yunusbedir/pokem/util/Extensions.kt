@@ -30,9 +30,3 @@ fun <T : Parcelable> Context.startService(pokemonDetail: T?) {
         startService(intent)
     }
 }
-
-
-/** Event Send to firebase analytics **/
-fun FirebaseAnalytics.trackEventFirebaseAnalytics(firebaseEvent: FirebaseEvent) {
-    logEvent(firebaseEvent.eventName, firebaseEvent.params)
-}
