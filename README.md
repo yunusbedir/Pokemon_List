@@ -21,7 +21,7 @@
 * UI Test
 * Unit Test
 
-## Landing Screen with data from SWAPI API
+## Ekran Görüntüleri
 <p align="center">
 <img width="142" alt="screen1" src="https://github.com/yunusbedir/Pokemon_List/blob/master/screen_shots/permission.png">
 
