@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "800088830213",
+    "project_id": "pokemon-list-9070a",
+    "storage_bucket": "pokemon-list-9070a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800088830213:android:38a02828ac806c9032476c",
+        "android_client_info": {
+          "package_name": "com.yunusbedir.pokem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800088830213-ftv2b1o2ki9rtt41ttpis9perl6eukml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvdcWioSaIvZClJujAnj0-_Put09I_xrc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800088830213-ftv2b1o2ki9rtt41ttpis9perl6eukml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
