@@ -9,7 +9,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
-class FetchPokemonListUseCaseTest {
+class GetPokemonDetailUseCaseTest {
 
     private val pokemonDetailList = mutableListOf<PokemonDetailResult>(
         PokemonDetailResult(
