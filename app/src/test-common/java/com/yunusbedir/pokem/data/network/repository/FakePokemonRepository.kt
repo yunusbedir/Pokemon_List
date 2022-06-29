@@ -1,4 +1,4 @@
-package com.yunusbedir.pokem.data.repository
+package com.yunusbedir.pokem.data.network.repository
 
 import com.yunusbedir.pokem.domain.ErrorMapper
 import com.yunusbedir.pokem.domain.ResultData

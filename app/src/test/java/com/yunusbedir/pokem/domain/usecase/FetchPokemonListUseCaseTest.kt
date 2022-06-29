@@ -1,7 +1,7 @@
 package com.yunusbedir.pokem.domain.usecase
 
 import app.cash.turbine.test
-import com.yunusbedir.pokem.data.repository.FakePokemonRepository
+import com.yunusbedir.pokem.data.network.repository.FakePokemonRepository
 import com.yunusbedir.pokem.domain.model.result.PokemonDetailResult
 import com.yunusbedir.pokem.ui.UIState
 import kotlinx.coroutines.runBlocking
